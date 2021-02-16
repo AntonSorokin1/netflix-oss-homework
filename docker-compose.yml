@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  config-server:
+    build: infra/config-server/
+    ports:
+    - 8888:8888
+  eureka-server:
+    build: infra/eureka-server/
+    ports:
+    - 8282:8282
+    depends_on:
+      - config-server
+  gateway:
+    build: infra/api-gateway/
+    ports:
+    - 9094:9094
+    depends_on: 
+      - eureka-server
+  workspaces-service:
+    build: business-services/workspaces-api/
+    ports:
+    - 9090:9090
+    - 9091:9091
+    depends_on: 
+      - eureka-server
+  employees-service:
+    build: business-services/employees-api/
+    ports:
+    - 9092:9092
+    depends_on: 
+      - eureka-server
