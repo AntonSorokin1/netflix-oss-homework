@@ -3,8 +3,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/AntonSorokin1/config-server.git
-
+          url: https://github.com/AntonSorokin1/config-server.git
   profiles:
      active: native
 

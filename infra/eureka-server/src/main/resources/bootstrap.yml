@@ -6,4 +6,9 @@ spring:
       uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8888}
       failFast: true
 
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
 server.port: 8989
