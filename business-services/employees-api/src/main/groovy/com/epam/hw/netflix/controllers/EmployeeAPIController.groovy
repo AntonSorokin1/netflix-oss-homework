@@ -17,9 +17,6 @@ class EmployeeAPIController {
     @Autowired
     WorkspaceAPI workspaceAPIClient
 
-    @Autowired
-    WorkspacesFeignClient feignClient;
-
     @RequestMapping("/{id}")
     def describeEmployee(@PathVariable("id") String id) {
         def employee = employeeService.findEmployee(id)
@@ -29,7 +26,7 @@ class EmployeeAPIController {
                 firstName: employee.firstName,
                 lastName : employee.lastName,
                 email    : employee.email,
-                workspace: feignClient.getWorkspaceById(id)
+                workspace: workspaceAPIClient.getWorkspaceById(id)
         ]
     }
 }
